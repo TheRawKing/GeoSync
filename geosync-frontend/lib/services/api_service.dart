@@ -1,11 +1,19 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  // Use localhost for Android emulator (10.0.2.2) or local IP for real device
-  // Since we are in a sandbox environment, we'll assume standard localhost
-  // but for a real Flutter app this needs adjustment.
-  static const String baseUrl = 'http://localhost:3000/api';
+  // Smartly choose localhost (web/iOS) or 10.0.2.2 (Android Emulator)
+  static String get baseUrl {
+    if (kIsWeb) {
+      return 'http://localhost:3000/api';
+    } else if (Platform.isAndroid) {
+      return 'http://10.0.2.2:3000/api';
+    } else {
+      return 'http://localhost:3000/api';
+    }
+  }
 
   Future<bool> checkIn(String userId, String location) async {
     try {

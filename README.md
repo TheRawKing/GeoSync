@@ -68,6 +68,12 @@ Navigate to the `geosync-frontend` directory:
 cd geosync-frontend
 ```
 
+Initialize the Flutter platform files (Android/iOS):
+
+```bash
+flutter create .
+```
+
 Get dependencies:
 
 ```bash
